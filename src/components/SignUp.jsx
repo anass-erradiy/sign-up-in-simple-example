@@ -105,6 +105,10 @@ const SignUp = () => {
                       required: true,
                       message: 'Please input your emailAdress!',
                     },
+                    {
+                      type : 'email' ,
+                      message : 'please enter an email !'
+                    } ,
                   ]}
                   name="EmailAdress">
                   <Input />
@@ -119,7 +123,7 @@ const SignUp = () => {
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your password!',
+                      min : 8
                     },
                   ]}
                   style={{
@@ -128,7 +132,7 @@ const SignUp = () => {
                   }}
                   name="password">
 
-                  <Input />
+                  <Input.Password />
                 </Form.Item>
               </Col>
             </Row>

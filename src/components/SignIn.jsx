@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 const SignIn = () => {
   const [loading, setLoading] = useState(true);
   const [loadings, setLoadings] = useState(false);
+  const { Text, Title } = Typography;
   const enterLoading = () => {
     setLoadings(true);
     setTimeout(() => {
       setLoadings(false);
     }, 1500);
   };
-  const { Text, Title } = Typography;
   useEffect(() => {
     setTimeout(() => {
       setLoading(!loading);
