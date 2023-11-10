@@ -1,13 +1,20 @@
-import React from 'react';
-import { Button, Checkbox, Form, Input, Col, Row, Typography ,Space} from 'antd';
+import React, { useEffect } from 'react';
+
+import { Button, Checkbox, Form, Input, Col, Row, Typography ,Space , Spin} from 'antd';
 import '../assets/css/singnInUp.css';
 import { Link } from 'react-router-dom';
 
 export const SignIn = () => {
+  const [loading, setLoading] = React.useState(true);
   const { Text, Title } = Typography;
-
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(!loading);
+    }, 500);
+  },[])
   return (
     <div className='form'>
+      <Spin spinning={loading}>
       <div>
         <img
           alt="logo"
@@ -103,6 +110,8 @@ export const SignIn = () => {
         <Text style={{ fontSize: '1.1rem' ,fontWeight : 600 ,marginRight: '8px'}}>New to Modernize?</Text>
         <Link to='/signUp'> Create an account</Link>
       </div>
+      </Spin>
+
     </div>
   )
 }
