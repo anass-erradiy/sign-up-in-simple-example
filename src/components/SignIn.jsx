@@ -1,11 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 
-import { Button, Checkbox, Form, Input, Col, Row, Typography ,Space , Spin} from 'antd';
+import { Button, Checkbox, Form, Input, Col, Row, Typography ,Space , Spin ,Flex} from 'antd';
 import '../assets/css/singnInUp.css';
 import { Link } from 'react-router-dom';
 
-export const SignIn = () => {
-  const [loading, setLoading] = React.useState(true);
+const SignIn = () => {
+  const [loading, setLoading] = useState(true);
+  const [loadings, setLoadings] = useState(false);
+  const enterLoading = () => {
+    setLoadings(true);
+    setTimeout(() => {
+      setLoadings(false);
+    }, 1500);
+  };
   const { Text, Title } = Typography;
   useEffect(() => {
     setTimeout(() => {
@@ -49,6 +56,7 @@ export const SignIn = () => {
       </Space>
       <div><Text style={{fontSize: '1.1rem'}}>Or sign in with </Text></div>
       <Form
+        onFinish={enterLoading}
         layout="vertical"
         name="basic"
         labelCol={{ span: 8 }}
@@ -89,7 +97,7 @@ export const SignIn = () => {
                 }}
                 name="password">
 
-                <Input />
+                <Input.Password />
               </Form.Item>
             </Col>
           </Row>
@@ -100,7 +108,11 @@ export const SignIn = () => {
         </div>
         <div>
           <Form.Item>
-            <Button type="primary" htmlType="submit" block style={{ height: "40px", margin: '25px 0 5px', fontSize: '0.9375rem' }}>
+            <Button type="primary" 
+              htmlType="submit" 
+              block style={{ height: "40px", margin: '25px 0 5px', fontSize: '0.9375rem' }}
+              loading={loadings}
+              >
               Sign In
             </Button>
           </Form.Item>
