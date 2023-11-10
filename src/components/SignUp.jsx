@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Checkbox, Form, Input, Col, Row, Typography, Space, Spin } from 'antd';
+import { Button, Checkbox, Form, Input, Col, Row, Typography, Space, Spin ,message } from 'antd';
 import '../assets/css/singnInUp.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [loading, setLoading] = useState(true);
   const [loadings, setLoadings] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+  const navigation = useNavigate() ;
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Your account has been created successfully',
+      duration: 3,
+    });
+    setTimeout(() => {
+      navigation('/')
+    },2500)
+  };
   const enterLoading = (e) => {
     setLoadings(true);
     setTimeout(() => {
       setLoadings(false);
+      success()
     }, 1500);
     e.preventDefault()
   };
@@ -17,6 +31,7 @@ const SignUp = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(!loading);
+      
     }, 500);
   }, [])
   return (
@@ -121,9 +136,11 @@ const SignUp = () => {
           </div>
           <div>
             <Form.Item>
+              {contextHolder}
               <Button type="primary" 
               htmlType="submit" 
               loading={loadings}
+              
               block style={{ height: "40px", margin: '25px 0 5px', fontSize: '0.9375rem' }}>
                 Sign Up
               </Button>
