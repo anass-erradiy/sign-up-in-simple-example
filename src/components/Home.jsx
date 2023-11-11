@@ -1,10 +1,11 @@
 import React ,{useState} from 'react';
 import { useLocation ,useNavigate } from 'react-router-dom';
 import { PoweroffOutlined } from '@ant-design/icons';
-import { Button  } from 'antd';
+import { Button ,Skeleton  } from 'antd';
 
 
 const Home = () => {
+  const [skeleton ,setSkeleton] = useState(true)
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate() ;
   const enterLoading = () => {
@@ -14,19 +15,24 @@ const Home = () => {
       navigation('/') ;
     }, 1500);
   } ;
+  setTimeout(() => {
+    setSkeleton(false)
+  },1000)
   const { state } = useLocation();
   const receivedUser = state && state.user ;
   return (
     <>
-    <h1>Welcome to home page</h1>
-    <h3 style={{color:'gray'}}>{receivedUser.username}</h3>
-    <Button
-      type="primary"
-      danger
-      icon={<PoweroffOutlined />}
-      loading={loading}
-      onClick={() => enterLoading()}
-    />
+    {
+      skeleton?<Skeleton active={skeleton} /> :<><h1>Welcome to home page</h1>
+      <h3 style={{color:'gray'}}>{receivedUser.username}</h3>
+      <Button
+        type="primary"
+        danger
+        icon={<PoweroffOutlined />}
+        loading={loading}
+        onClick={() => enterLoading()}
+      /></>
+    }
     </>
   );
 };
