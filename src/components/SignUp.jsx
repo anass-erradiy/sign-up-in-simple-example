@@ -6,11 +6,14 @@ import Logo from '../assets/images/Logo';
 import Buttons from './forms/Buttons';
 import Footer from './forms/Footer';
 import FormG from './forms/FormG';
+import { useDispatch, useSelector } from "react-redux";
+
 
 const SignUp = () => {
   const [loading, setLoading] = useState(true);
   const [buttonState, setButtonState] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const dispatch = useDispatch();
   const navigation = useNavigate() ;
 
   // show success message
@@ -27,6 +30,12 @@ const SignUp = () => {
   };
   // spin button and after 1.5s call success() to show success message
   const enterLoading = (e) => {
+      const user = {
+      username : e.username ,
+      emailAdress : e.EmailAdress ,
+      password : e.password
+    } ;
+    dispatch({type:"add_user" ,payload : user}) ;
     setButtonState(true);
     setTimeout(() => {
       setButtonState(false);

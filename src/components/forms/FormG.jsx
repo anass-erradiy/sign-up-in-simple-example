@@ -61,6 +61,7 @@ const FormG = ({enterLoading,loadings,contextHolder,buttonState}) => {
                     </div>
                     <div>
                     <Form.Item>
+                        {contextHolder}
                         <Button type="primary"
                         htmlType="submit"
                         block style={{ height: "40px", margin: '25px 0 5px', fontSize: '0.9375rem' }}
@@ -84,7 +85,7 @@ const FormG = ({enterLoading,loadings,contextHolder,buttonState}) => {
                     <Row>
                         <Col span={24}>
                         <Form.Item
-                            label="Name"
+                            label="Username"
                             style={{ fontWeight: 600, margin: '25px 0 5px' }}
                             rules={[
                             {
@@ -92,7 +93,7 @@ const FormG = ({enterLoading,loadings,contextHolder,buttonState}) => {
                                 message: 'Please input your name!',
                             },
                             ]}
-                            name="name">
+                            name="username">
                             <Input />
                         </Form.Item>
                         </Col>
