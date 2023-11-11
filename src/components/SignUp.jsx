@@ -1,160 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Checkbox, Form, Input, Col, Row, Typography, Space, Spin ,message } from 'antd';
+import { Button, Form, Input, Col, Row, Spin ,message } from 'antd';
 import '../assets/css/singnInUp.css';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../assets/images/Logo';
+import Buttons from './forms/Buttons';
+import Footer from './forms/Footer';
+import FormG from './forms/FormG';
 
 const SignUp = () => {
   const [loading, setLoading] = useState(true);
-  const [loadings, setLoadings] = useState(false);
+  const [buttonState, setButtonState] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const navigation = useNavigate() ;
+
+  // show success message
   const success = () => {
     messageApi.open({
       type: 'success',
       content: 'Your account has been created successfully',
       duration: 3,
     });
+    // redirect to the home signIn page
     setTimeout(() => {
       navigation('/')
     },2500)
   };
+  // spin button and after 1.5s call success() to show success message
   const enterLoading = (e) => {
-    setLoadings(true);
+    setButtonState(true);
     setTimeout(() => {
-      setLoadings(false);
+      setButtonState(false);
       success()
     }, 1500);
-    e.preventDefault()
   };
-  const { Text, Title } = Typography;
+
+  // show spin once the page loaded
   useEffect(() => {
     setTimeout(() => {
       setLoading(!loading);
-      
     }, 500);
   }, [])
   return (
     <div className='form'>
       <Spin spinning={loading}>
-        <div>
-          <img
-            alt="logo"
-            fetchpriority="high"
-            width={174}
-            height={70}
-            decoding="async"
-            data-nimg={1}
-            src="https://modernize-nextjs.adminmart.com/images/logos/dark-logo.svg"
-            style={{ color: 'transparent' }}
-          />
-        </div>
-        <Space style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px' }}>
-          <Button style={{ fontSize: "16px" }}>
-            <img
-              alt="icon"
-              width={15}
-              height={15}
-              src="https://modernize-nextjs.adminmart.com/images/svgs/google-icon.svg"
-              style={{ marginRight: '8px', verticalAlign: 'middle' }}
-            />Sign in with Google
-          </Button >
-          <Button style={{ fontSize: "16px" }} >
-            <img
-              alt="icon"
-              width={25}
-              height={25}
-              src="https://modernize-nextjs.adminmart.com/images/svgs/facebook-icon.svg"
-              style={{ marginRight: '8px', verticalAlign: 'middle' }}
-            />Sign in with FB
-          </Button>
-        </Space>
-        <div><Text style={{ fontSize: '1.1rem' }}>Or sign up with </Text></div>
-        <Form
-          onFinish={enterLoading}
-          layout="vertical"
-          name="basic"
-          labelCol={{ span: 8 }}
-          initialValues={{ remember: true }}
-          autoComplete="off"
-        >
-          <div>
-            <Row>
-              <Col span={24}>
-                <Form.Item
-                  label="Name"
-                  style={{ fontWeight: 600, margin: '25px 0 5px' }}
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your name!',
-                    },
-                  ]}
-                  name="name">
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
-                <Form.Item
-                  label="EmailAdress"
-                  style={{ fontWeight: 600, margin: '25px 0 5px' }}
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your emailAdress!',
-                    },
-                    {
-                      type : 'email' ,
-                      message : 'please enter an email !'
-                    } ,
-                  ]}
-                  name="EmailAdress">
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={24}>
-                <Form.Item
-                  label="Password"
-                  rules={[
-                    {
-                      required: true,
-                      min : 8
-                    },
-                  ]}
-                  style={{
-                    fontWeight: 600,
-                    margin: '25px 0 5px'
-                  }}
-                  name="password">
-
-                  <Input.Password />
-                </Form.Item>
-              </Col>
-            </Row>
-
-          </div>
-          <div>
-            <Form.Item>
-              {contextHolder}
-              <Button type="primary" 
-              htmlType="submit" 
-              loading={loadings}
-              
-              block style={{ height: "40px", margin: '25px 0 5px', fontSize: '0.9375rem' }}>
-                Sign Up
-              </Button>
-            </Form.Item>
-          </div>
-        </Form>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '8px' }}>
-          <Text style={{ fontSize: '1.1rem', fontWeight: 600, marginRight: '8px' }}>Already have an Account?</Text>
-          <Link to='/'> Sign in</Link>
-        </div>
+        <Logo/>
+        <Buttons/>
+        <FormG contextHolder={contextHolder} buttonState={buttonState} enterLoading={enterLoading}/>
+        <Footer/>
       </Spin>
     </div>
   )
