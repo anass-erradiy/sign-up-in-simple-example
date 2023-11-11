@@ -4,6 +4,7 @@ import SignUp from './components/SignUp';
 import Home from './components/Home';
 
 import { Routes ,Route , Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function App() {
   return (

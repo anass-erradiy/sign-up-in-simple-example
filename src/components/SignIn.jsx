@@ -18,7 +18,10 @@ const SignIn = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const navigation = useNavigate() ;
 
-
+  useEffect(() => {
+    // Change the title
+    document.title = 'Login page';
+  },[])
   const key = 'updatable';
   const enterLoading = (e) => {
     const foundedUser = users.find(user => user.username === e.username)

@@ -27,7 +27,7 @@ const data = [
 ]
 const Buttons = ({text}) => {
     const path = useLocation() ;
-    const { Text, Title } = Typography;
+    const { Text } = Typography;
     const currentPath = path.pathname ;
 
     return (
@@ -38,7 +38,6 @@ const Buttons = ({text}) => {
                         return (
                             <Button key={index} style={{fontSize : "16px"}}>
                                 <img
-                                
                                 alt="icon"
                                 width={item.image.dm}
                                 height={item.image.dm}

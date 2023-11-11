@@ -13,8 +13,6 @@ const FormG = ({enterLoading,loadings,contextHolder,buttonState}) => {
                     onFinish={enterLoading}
                     layout="vertical"
                     name="basic"
-                    labelCol={{ span: 8 }}
-                    initialValues={{ remember: true }}
                     autoComplete="off"
                 >
                     <div>

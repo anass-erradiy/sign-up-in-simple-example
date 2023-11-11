@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{useState,useEffect} from 'react';
 import { useLocation ,useNavigate } from 'react-router-dom';
 import { PoweroffOutlined } from '@ant-design/icons';
 import { Button ,Skeleton  } from 'antd';
@@ -8,6 +8,11 @@ const Home = () => {
   const [skeleton ,setSkeleton] = useState(true)
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate() ;
+
+  useEffect(() => {
+    // Change the title
+    document.title = 'Home page';
+  },[])
   const enterLoading = () => {
     setLoading(true);
     setTimeout(() => {

@@ -15,7 +15,10 @@ const SignUp = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
   const navigation = useNavigate() ;
-
+  useEffect(() => {
+    // Change the title
+    document.title = 'Sign up page';
+  },[])
   // show success message
   const success = () => {
     messageApi.open({
