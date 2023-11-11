@@ -38,7 +38,7 @@ const SignIn = () => {
           duration: 2,
         })
         setTimeout(() => {
-          navigation('/home')
+          navigation('/home',{ state: { user: foundedUser } })
         },2000)
       }
       else 
