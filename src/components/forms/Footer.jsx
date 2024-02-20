@@ -2,8 +2,6 @@ import React from 'react'
 import { useLocation ,Link} from 'react-router-dom';
 import { Typography } from 'antd';
 
-
-
 const Footer = () => {
     const {Text} = Typography ;
     const path = useLocation() ;
